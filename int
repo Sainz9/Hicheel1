@@ -40,4 +40,5 @@ where true;
 select ner, nas from student where  nas between 13 and 24;
 
 select ner, nas - 18 from student where nas >= 18; 
-KASDASDASDAS
+KASDASDASDASSADASDSAD
+OK
