@@ -1,0 +1,42 @@
+#Бүх багана харах бол *
+select * from student;
+#Зөвхөн нэг багана харах бол сонгосон нэр бичээд гаргана
+select Owog, Ner FROM student;
+
+select * from  student;
+select Ner, huis, aimag FROM student;
+
+select Ner, huis, aimag FROM student where huis = false;
+
+select Ner, huis, aimag FROM student where huis = true;
+
+select Ner, huis, aimag, T_Ognoo FROM student where T_Ognoo  2000;
+
+select Ner, huis, aimag FROM student Where aimag = 'Улаанбаатар' OR aimag = 'Дархан-Уул';
+
+select ner, huis, aimag FROM student where aimag = 'Архангай' OR Ner = 'Тамир';
+UPDATE  student
+set aimag = 'Улаанбаатар', huis = 1
+where oyutan_code = 'S-008';
+
+select * from student where T_Ognoo BETWEEN '1990-01-01' AND '1999-12-31' ;
+
+Alter table student
+drop column(3);
+
+Alter table  student
+modify  nas INT(3);
+
+
+ALTER TABLE student
+ADD Nas int(3);
+
+DESCRIBE student;
+
+update  student
+set Nas =  floor(2+(RAND() * 66))
+where true;
+
+select ner, nas from student where  nas between 13 and 24;
+
+select ner, nas - 18 from student where nas >= 18;
