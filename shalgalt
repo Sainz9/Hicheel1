@@ -1,0 +1,24 @@
+drop table hicheel;
+
+CREATE TABLE hicheel (
+    Code varchar(10) NOT NULL,
+    Ner varchar(255) NULL,
+    Nas varchar(255) NULL,
+    Huis varchar(255) NULL,
+    Toon_dun varchar(255) NULL,
+    Usegt_Dun varchar(255) NULL,
+    Tailbar varchar(255) NOT NULL,
+    PRIMARY KEY (Code)
+);
+
+INSERT INTO hicheel (code, ner, nas, huis, toon_dun, usegt_dun, tailbar)
+VALUES
+('SW01', 'Baatar', '22', 'Er', '100', 'D', ''),
+('SW02', 'Oyunt',  '20', 'Em', '78',  'C', ''),
+('SW03', 'Suren',  '21', 'Huis', '50', 'F', ''),
+('SW04', 'Nomln',  '18', 'Em', '90', 'A', 'Cholootoi'),
+('SW05', 'Doni',   '21', 'Er', '85', 'B', '');
+
+select * from hicheel where Nas <= 20;
+
+select * from hicheel where Toon_dun > (select AVG(Toon_dun) from hicheel);
