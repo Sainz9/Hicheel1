@@ -1,0 +1,189 @@
+
+create database zhzb;
+
+use zhzb;
+
+create table ezemshgch(
+    EzemshigchRO CHAR(10) PRIMARY KEY,
+    Ner VARCHAR(20) NOT NULL,
+    Owog VARCHAR(20) NOT NULL,
+    Hayag VARCHAR(50),
+    Utas VARCHAR(8),
+    uneleh VARCHAR(8) UNIQUE
+);
+
+CREATE TABLE uildverlegch(
+ uildverlegchid tinyint(4) PRIMARY KEY,
+uildverlegchner varchar (20)
+);
+
+CREATE TABLE mark
+(
+    markcode    TINYINT(4) PRIMARY KEY,
+    marker      VARCHAR(20) not null,
+    uildvercode tinyint(4),
+    FOREIGN KEY (uildvercode) references uildverlegch (uildverlegchid)
+);
+CREATE TABLE ungu
+(
+    unguld  tinyint(20) primary key,
+    unquner varchar(20) not null,
+    unqunex varchar(10)
+);
+CREATE TABLE anglial
+(
+    angilald    tinyint(4) primary key,
+    anglilalner varchar(20) not null
+);
+create table duureg
+(
+    duuregld  tinyint(4) primary key,
+    duuregner varchar(20) not null
+);
+create table horoo
+(
+    horoold    tinyint(4) primary key,
+    horooner   varchar(20) not null,
+    duuregcode tinyint(4),
+    foreign key (duuregcode) references duureg (duuregld)
+);
+create table camer
+(
+    camerld       varchar(8) primary key,
+    camerBairshil varchar(50) not null,
+    horoocode     tinyint(4),
+    foreign key (horoocode) references horoo (horoold)
+);
+create table zxtx
+(
+    id      tinyint(4) primary key,
+    tailbar varchar(50) not null,
+    zaalt   varchar(10) not null,
+    dans    varchar(10) not null,
+    tulbur  int(11)     not null
+);
+create table mashin
+(
+    plateno     varchar(7) primary key,
+    markcode    tinyint(4),
+    anglialcode tinyint(4),
+    ungucode    tinyint(4),
+    ezemshigchd char(10),
+    foreign key (markcode) references mark (markcode),
+    foreign key (anglialcode) references anglial (angilald),
+    foreign key (ungucode) references ungu (unguld),
+    foreign key (ezemshigchd) references ezemshgch (EzemshigchRO)
+);
+create table zorchilburtgel
+(
+    burgelild    int(11) primary key auto_increment,
+    ognoo        varchar(8),
+    camercode    varchar(8),
+    duremcode tinyint(8),
+    mashindugaar varchar(7),
+    foreign key (camercode) references camer (camerld),
+    foreign key (duremcode) references zxtx (id),
+    foreign key (mashindugaar) references mashin (plateno)
+);
+
+INSERT INTO duureg(duuregld, duuregner)
+values ('1', 'Suhbaatar');
+select * from duureg;
+
+
+INSERT INTO horoo(horoold, horooner, duuregcode)
+values ('1', '11-r horoo', '1');
+select * from horoo;
+
+INSERT INTO camer(camerld, camerBairshil, horoocode)
+values ('1', 'uulzwar', '1');
+
+select * from camer;
+
+SELECT d.duuregner, h.horooner, c.camerBairshil FROM camer c
+JOIN  horoo h on c.horoocode = h.horoold
+JOIN duureg d on d.duuregld = h.duuregcode;
+
+INSERT INTO uildverlegch(uildverlegchid, uildverlegchNer)
+values ('1', 'Chevrolet');
+
+SELECT * from uildverlegch;
+
+
+
+
+
+
+
+
+
+
+
+insert into uildverlegch(uildverlegchid, uildverlegchner)
+values ('2','BMW');
+select * from uildverlegch where uildverlegchner = 'BMW' ;
+
+insert into mark(markcode, marker, uildvercode)
+values ('3', 'M SR', '2')
+update mark set marker = 'M SR' where  markcode = 3;
+insert into mark(markcode, marker, uildvercode)
+values ('4', 'Alpina ', '2')
+update mark set marker = 'Alpina D5 S  ' where markcode = 4
+select * from mark;
+delete from mark  where markcode = '5';
+
+
+describe uildverlegch;
+
+insert into zxtx(id, tailbar, zaalt, dans, tulbur)
+values ('1', 'Zorchil baihgui', '5', '50505050', '0')
+select * from zxtx;
+delete from zxtx where id ='1'
+
+update zxtx set tailbar = 'Ulaan gereleer ywsan', tulbur = '50000' where id = 1
+
+select * from zxtx;
+
+
+
+
+insert into mark (markcode, marker, uildvercode)
+values ('5', 'Hyundai ', '2')
+select * from mark
+;
+delete from  mark where markcode = '5';
+update mark set marker =  'Alpha ' where markcode = 5
+select * from mark;
+
+
+
+insert into ezemshgch(ezemshigchro, ner, owog, hayag, utas, uneleh)
+values ('04261210', 'Anhaa','Olziitaiwan', '11 horoolol', '80807070', '6054')
+select * from ezemshgch
+update ezemshgch set  ner = 'Bataa', Hayag = '21 horoolol' where utas = 80807070
+delete from ezemshgch where EzemshigchRO = '04261210';
+select * from ezemshgch
+
+insert into mark(markcode, marker, uildvercode )
+values ('6', 'Hyundai Excel ', '2')
+select * from mark
+delete from mark where marker = 'Hyundai Excel';
+
+
+select * from mashin;
+insert into mashin (plateno, markcode, anglialcode, ungucode, ezemshigchd)
+values ('1234УББ', '2', '3', '1', '04261210')
+select * from mashin
+
+
+insert into zorchilburtgel(burgelild, ognoo, camercode, duremcode, mashindugaar)
+values ('1', '2020-07.04', '1', '1',  '1234УББ')
+select * from zorchilburtgel
+delete from zorchilburtgel where mashindugaar = '1234УББ';
+select * from zorchilburtgel
+
+
+
+
+
+
